@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday! 🎉</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <div id="consentOverlay">
+        <div class="consent-box">
+            <h2>🎉 Happy Birthday! 🎉</h2>
+            <p>Would you like to start the background music?</p>
+            <div class="consent-buttons">
+                <button id="playMusicBtn">Yes, Play Music! 🔊</button>
+                <button id="muteMusicBtn">No, Keep it Muted 🔇</button>
+            </div>
+        </div>
+    </div>
+
+    <audio id="birthdayMusic" loop>
+        <source src="music.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <button class="music-control" id="musicToggle">🔇</button>
+
+    <div id="page-container">
+
+        <div id="home" class="page-section active container bg-home">
+            <h1 class="title">🎉HAPPY BIRTHDAY!🎉</h1>
+            <p class="subtitle">Let's Celebrate Your Special Day!</p>
+            
+            <div class="cake-container" onclick="blowCandles()">
+                🎂
+            </div>
+        </div>
+
+        <div id="message" class="page-section container bg-message">
+            <div class="message-box">
+                <h1 class="title">💌 Special Birthday Message 💌</h1>
+                
+                <div class="typewriter-container">
+                    <div class="typewriter" id="typewriter">
+                        <span class="cursor" id="cursor"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="gallery" class="page-section container bg-gallery">
+            <div class="header">
+                <h1 class="title">📸 Memory Gallery 📸</h1>
+                <p class="subtitle">Beautiful moments captured forever!</p>
+            </div>
+
+            <div class="gallery-grid" id="galleryGrid">
+                <div class="gallery-item">
+                    <img src="https://i.pinimg.com/736x/49/3c/13/493c131da7479188826872e036e7886e.jpg" alt="Birthday Balloons">
+                    <h3>Birthday Balloons</h3>
+                    <p>Colorful celebrations!</p>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://i.pinimg.com/736x/5c/4c/28/5c4c28227e14d20aecb634ca9b070462.jpg" alt="Birthday Cake">
+                    <h3>Birthday Cake</h3>
+                    <p>Sweet moments together!</p>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://i.pinimg.com/736x/0c/df/55/0cdf5516103bc4cfc6686e19d4af1e24.jpg" alt="Special Gifts">
+                    <h3>Special Gifts</h3>
+                    <p>Surprises and joy!</p>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://i.pinimg.com/1200x/2d/df/9c/2ddf9ccb616327c5b3c6baac03dee8d1.jpg" alt="Magical Moments">
+                    <h3>Magical Moments</h3>
+                    <p>Unforgettable memories!</p>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://i.pinimg.com/736x/e0/f0/2c/e0f02cec60622ec7cdf7cacdf4adfb7a.jpg" alt="Love & Care">
+                    <h3>Love & Care</h3>
+                    <p>Precious times!</p>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://i.pinimg.com/736x/23/47/3b/23473b831b083e0534acbb5d53a18b6a.jpg" alt="Celebration">
+                    <h3>Celebration</h3>
+                    <p>Party time fun!</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="surprise" class="page-section container bg-surprise">
+            <div class="heart-container" onclick="createHeartBurst()">
+                <div class="glowing-heart" id="mainHeart">💖</div>
+                <div class="love-message">I LOVE YOU Cutee💖</div>
+            </div>
+        </div>
+
+    </div> <div class="navigation">
+        <a class="nav-btn" data-target="home">🏠 Home</a>
+        <a class="nav-btn" data-target="gallery">📸 View Gallery</a>
+        <a class="nav-btn" data-target="message">💌 Sweet Message</a>
+        <a class="nav-btn" data-target="surprise">🎁 Special Surprise</a>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
