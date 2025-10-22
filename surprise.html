@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎁 Special Surprise</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: radial-gradient(circle at center, #ff9a9e 0%, #fad0c4 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .container {
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .heart-container {
+            position: relative;
+            margin-bottom: 40px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .glowing-heart {
+            font-size: 15rem;
+            color: #ff1744;
+            text-shadow: 
+                0 0 20px #ff1744,
+                0 0 40px #ff1744,
+                0 0 60px #ff1744,
+                0 0 80px #ff1744,
+                0 0 100px #ff1744;
+            animation: glow 2s ease-in-out infinite alternate, pulse 1.5s ease-in-out infinite;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 
+                    0 0 20px #ff1744,
+                    0 0 40px #ff1744,
+                    0 0 60px #ff1744,
+                    0 0 80px #ff1744;
+            }
+            to {
+                text-shadow: 
+                    0 0 10px #ff1744,
+                    0 0 20px #ff1744,
+                    0 0 30px #ff1744,
+                    0 0 40px #ff1744,
+                    0 0 50px #ff1744,
+                    0 0 60px #ff1744;
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        .glowing-heart:hover {
+            transform: scale(1.2);
+            animation: heartExplosion 0.6s ease;
+        }
+
+        @keyframes heartExplosion {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(1.2); }
+        }
+
+        .love-message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            animation: messageGlow 3s ease-in-out infinite;
+            pointer-events: none;
+            white-space: nowrap;
+        }
+
+        @keyframes messageGlow {
+            0%, 100% {
+                opacity: 0.9;
+                text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            }
+            50% {
+                opacity: 1;
+                text-shadow: 0 0 20px rgba(255,255,255,0.8), 2px 2px 4px rgba(0,0,0,0.5);
+            }
+        }
+
+        .sparkles {
+            position: absolute;
+            color: gold;
+            font-size: 2rem;
+            animation: sparkleAnimation 4s infinite ease-in-out;
+            pointer-events: none;
+        }
+
+        @keyframes sparkleAnimation {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg) scale(0.5);
+                opacity: 0;
+            }
+            25% {
+                opacity: 1;
+                transform: translateY(-30px) rotate(90deg) scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: translateY(-60px) rotate(180deg) scale(1.2);
+            }
+            75% {
+                opacity: 1;
+                transform: translateY(-30px) rotate(270deg) scale(1);
+            }
+        }
+
+
+        .floating-hearts {
+            position: absolute;
+            font-size: 1.5rem;
+            color: rgba(255, 23, 68, 0.7);
+            animation: floatUp 6s infinite ease-out;
+            pointer-events: none;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .glowing-heart {
+                font-size: 8rem;
+            }
+            .love-message {
+                font-size: 1.5rem;
+                white-space: normal;
+                width: 80%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="heart-container" onclick="createHeartBurst()">
+            <div class="glowing-heart" id="mainHeart">💖</div>
+            <div class="love-message">I LOVE YOU Cutee💖</div>
+        </div>
+    </div>
+
+    <script>
+        // Create sparkles around the heart
+        function createSparkle() {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkles';
+            sparkle.innerHTML = ['✨', '⭐', '🌟', '💫'][Math.floor(Math.random() * 4)];
+            
+            const heartContainer = document.querySelector('.heart-container');
+            const rect = heartContainer.getBoundingClientRect();
+            
+            sparkle.style.left = (rect.left + Math.random() * rect.width) + 'px';
+            sparkle.style.top = (rect.top + Math.random() * rect.height) + 'px';
+            sparkle.style.animationDelay = Math.random() * 2 + 's';
+            
+            document.body.appendChild(sparkle);
+            
+            setTimeout(() => {
+                sparkle.remove();
+            }, 4000);
+        }
+
+        // Create floating hearts
+        function createFloatingHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'floating-hearts';
+            heart.innerHTML = ['💕', '❤️', '💖', '💝', '💗'][Math.floor(Math.random() * 5)];
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
+            heart.style.animationDelay = Math.random() * 2 + 's';
+            
+            document.body.appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 6000);
+        }
+
+        // Heart burst effect when clicked
+        function createHeartBurst() {
+            const mainHeart = document.getElementById('mainHeart');
+            mainHeart.style.animation = 'heartExplosion 0.6s ease';
+            
+            // Create burst of hearts
+            for (let i = 0; i < 12; i++) {
+                setTimeout(() => {
+                    const burstHeart = document.createElement('div');
+                    burstHeart.innerHTML = '💖';
+                    burstHeart.style.position = 'absolute';
+                    burstHeart.style.left = '50%';
+                    burstHeart.style.top = '50%';
+                    burstHeart.style.fontSize = '2rem';
+                    burstHeart.style.color = '#ff1744';
+                    burstHeart.style.pointerEvents = 'none';
+                    burstHeart.style.zIndex = '20';
+                    
+                    const angle = (i / 12) * 2 * Math.PI;
+                    const distance = 200;
+                    const endX = Math.cos(angle) * distance;
+                    const endY = Math.sin(angle) * distance;
+                    
+                    burstHeart.style.animation = `
+                        burstOut 2s ease-out forwards
+                    `;
+                    
+                    document.body.appendChild(burstHeart);
+                    
+                    setTimeout(() => {
+                        burstHeart.remove();
+                    }, 2000);
+                }, i * 50);
+            }
+        }
+
+        // Add burst animation to CSS
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes burstOut {
+                0% {
+                    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+                    opacity: 1;
+                }
+                100% {
+                    transform: translate(calc(-50% + ${Math.random() * 400 - 200}px), calc(-50% + ${Math.random() * 400 - 200}px)) scale(0.5) rotate(360deg);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Generate sparkles and floating hearts continuously
+        setInterval(createSparkle, 800);
+        setInterval(createFloatingHeart, 1200);
+
+        // Initial burst
+        for (let i = 0; i < 8; i++) {
+            setTimeout(createSparkle, i * 200);
+            setTimeout(createFloatingHeart, i * 300);
+        }
+
+        // Random heart size variations
+        setInterval(() => {
+            const mainHeart = document.getElementById('mainHeart');
+            const scale = 0.9 + Math.random() * 0.2;
+            mainHeart.style.transform = `scale(${scale})`;
+        }, 3000);
+    </script>
+</body>
+</html>

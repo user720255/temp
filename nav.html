@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigation</title>
+    <style>
+        #overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8); /* Dark, semi-transparent background */
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000; /* Ensure it is above all other content */
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        #musicStartButton {
+            padding: 0;
+            font-size: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            background: linear-gradient(45deg, #ff6b9d, #c44569);
+            padding: 10px;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+        }
+
+        #musicStartButton:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 25px rgba(0,0,0,0.3);
+            background: linear-gradient(45deg, #c44569, #ff6b9d);
+        }
+        body::before {
+        content: "";
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background: linear-gradient(135deg, rgba(255, 107, 157, 0.4), rgba(196, 69, 105, 0.4), rgba(248, 181, 0, 0.4), rgba(254, 202, 87, 0.4));
+        background-size: 400% 400%;
+        animation: gradientShift 6s ease infinite;
+        z-index: -1;
+        }
+        .navigation {
+            justify-content: center;
+            display: grid;
+            grid-template-columns: 20% 20% 20% 20% 8%;
+            gap: 20px;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .nav-btn {
+            background: linear-gradient(45deg, #ff6b9d, #c44569);
+            color: white;
+            border: none;
+            padding: 20px 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+            text-decoration: none;
+            display: block;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 25px rgba(0,0,0,0.3);
+            background: linear-gradient(45deg, #c44569, #ff6b9d);
+        }
+
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2.5rem;
+            }
+            .navigation {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+
+</head>
+<audio id="birthdayMusic" loop>
+    <source src="music.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+<body>
+    <audio id="birthdayMusic" loop>
+        <source src="music.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <div id="overlay"> 
+        <button id="musicStartButton">🎵 Start Music and Continue</button>
+    </div>
+    <div class="navigation">
+        <a href="home.html" class="nav-btn" target="top_frame"><center>🏠 Home</center></a>
+        <a href="gallery.html" class="nav-btn" target="top_frame"><center>📸 View Gallery</center></a>
+        <a href="message.html" class="nav-btn" target="top_frame"><center>💌 Sweet Message</center></a>
+        <a href="surprise.html" class="nav-btn" target="top_frame"><center>🎁 Special Surprise</center></a>
+    </div>
+</body>
+<script>
+  const music = document.getElementById('birthdayMusic');
+  const startButton = document.getElementById('musicStartButton');
+  const overlay = document.getElementById('overlay');
+
+  // Function called when the user clicks the button
+  function startPlayback() {
+    // 1. Attempt to play the music (this is the required user gesture)
+    music.play().then(() => {
+        // Success: Playback started.
+        console.log("Music started successfully.");
+        // 2. Hide the overlay to reveal the frameset
+        overlay.style.display = 'none';
+        
+    }).catch(error => {
+        // Failure: Playback blocked even after the click (rare, but possible)
+        console.error("Playback failed:", error);
+        
+        // Inform the user, but still hide the overlay so they can view the site
+        alert("Music could not start due to browser restrictions. Please check your media settings.");
+        overlay.style.display = 'none';
+    });
+    
+    // Remove the event listener after the first successful click
+    startButton.removeEventListener('click', startPlayback);
+  }
+
+  // Attach the event listener to the start button
+  document.addEventListener('DOMContentLoaded', () => {
+    startButton.addEventListener('click', startPlayback);
+  });
+</script>
+</html>
